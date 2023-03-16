@@ -6,21 +6,12 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
-
+  <h1>Welcome to the Demo</h1>
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<!--   <script>
+  <script>
     function onSignIn(googleUser) {
-      var id_token = googleUser.getAuthResponse().id_token;
-      // Send the ID token to your server for verification
+      // get user profile information
+      console.log(googleUser.getBasicProfile())
     }
-
-    gapi.load('auth2', function() {
-      gapi.auth2.init({
-        client_id: '533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com',
-      });
-    });
-  </script> -->
-
+  </script>
 </body>
-</html>
