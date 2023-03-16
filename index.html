@@ -3,16 +3,25 @@
 <head>
   <title>Google Login Example</title>
   <meta name="google-signin-client_id" content="533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com">
+  
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 </head>
 <body>
-  <h1>Welcome to the Demo</h1>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  <script>
-    function onSignIn(googleUser) {
-      // get user profile information
-      console.log(googleUser.getBasicProfile())
-    }
-  </script>
+  <div id="g_id_onload"
+     data-client_id="533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="https://ritikdutta.github.io/Oauth_login/"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="continue_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
 </body>
