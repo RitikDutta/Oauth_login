@@ -1,44 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Google Sign-In Example</title>
-  <!-- <script src="https://accounts.google.com/gsi/client"></script> -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script>
-    function onSignIn(response) {
-      var user = google.accounts.id.getSignedInUser(response);
-      console.log(user);
-      var name = user.getBasicProfile().getName();
-      console.log(name);
-    }
+  <head>
+    <meta name="google-signin-client_id" content="533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <div id="g_id_onload"
+         data-client_id="533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com"
+         data-context="signin"
+         data-auto_prompt="false"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse">
+    </div>
 
-    function initGoogleSignIn() {
-      google.accounts.id.initialize({
-        client_id: '533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com',
-        callback: onSignIn,
-        cancel_on_tap_outside: false,
-        context: 'signin',
-        nonce: 'your_nonce',
-        state: '',
-        prompt_parent_id: 'buttonDiv'
-      });
-    }
 
-    window.onload = initGoogleSignIn;
-  </script>
   
-</head>
-<body>
-  <div id="g_id_onload"
-       data-client_id="533965148281-oboi50ihru7smbjs5ds72ljku7cek8ee.apps.googleusercontent.com"
-       data-context="signin"
-       data-ux_mode="popup"
-       data-callback="onSignIn"
-       data-nonce="your_nonce"
-       data-itp_support="true">
-  </div>
-
-  <div id="buttonDiv">
     <div class="g_id_signin"
          data-type="standard"
          data-shape="pill"
@@ -47,6 +23,19 @@
          data-size="large"
          data-logo_alignment="left">
     </div>
-  </div>
-</body>
+
+    <script>
+      function handleCredentialResponse(response) {
+        const responcePayload = decodeJwtResponse(response.credential);
+          console.log("ID: " + responcePayload.sub)
+          console.log("Full Name: " + responcePayload.name)
+          console.log(responcePayload)
+      }
+
+      function decodeJwtResponse(data){
+        var tokens = data.split(".")
+        return JSON.parse(atob(tokens[1]));
+      }
+    </script>
+  </body>
 </html>
